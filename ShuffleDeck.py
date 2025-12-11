@@ -1,5 +1,34 @@
 import random
 
+
+class Deck:
+     def __init__(self,number_of_decks:int):
+            self.cards = createDecks(number_of_decks)
+     def shuffle(self):
+        copydeck = self.cards
+        half= int(len(copydeck)/2)
+        adeck=copydeck[:half]
+        bdeck=copydeck[half:]
+        shuffleddeck = []
+        for card in range(0,half):
+            try:
+                shuffleddeck.append(adeck.pop(random.randint(0,1)))
+            except:
+                shuffleddeck.append(adeck.pop(0))
+            try:
+                shuffleddeck.append(bdeck.pop(random.randint(0,1)))
+            except:
+                shuffleddeck.append(bdeck.pop(0))
+        self.cards = shuffleddeck
+        return self.cards
+     def draw(self,numberof_cards:int):
+        try:
+            drawn = []
+            for card in range(numberof_cards):
+                drawn.append(self.cards.pop(0))
+            return drawn
+        except:
+            return []
 suits = ["♠","♥","♦","♣"]
 
 royalty = ["J","Q","K","A"]
@@ -19,18 +48,37 @@ def createDecks(number_of_decks:int):
     return decks
 
 deck = createDecks(1)
-print(deck)
+# print(deck)
 def shuffle(deck):
         copydeck = deck
-        print(len(copydeck))
+        # print(len(copydeck))
         half= int(len(copydeck)/2)
-        print(half)
+        # print(half)
         adeck=copydeck[:half]
         bdeck=copydeck[half:]
-        for card in range(0,int(len(copydeck))):
-                print(random.randint(0,1))
+        shuffleddeck = []
+        for card in range(0,half):
+            try:
+                shuffleddeck.append(adeck.pop(random.randint(0,1)))
+            except:
+                shuffleddeck.append(adeck.pop(0))
+            try:
+                shuffleddeck.append(bdeck.pop(random.randint(0,1)))
+            except:
+                shuffleddeck.append(bdeck.pop(0))
+                 
         
-        return copydeck
+        return shuffleddeck
 
-deck = shuffle(deck)
-print(deck)
+# deck =shuffle(deck)
+# deck =shuffle(deck)
+# deck =shuffle(deck)
+# deck =shuffle(deck)
+# deck =shuffle(deck)
+# print(deck)
+# print(len(deck))
+
+test = Deck(1)
+
+print(test.draw(1))   
+print(test.draw(1))   
